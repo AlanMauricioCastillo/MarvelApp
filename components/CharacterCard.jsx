@@ -3,15 +3,17 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function CharacterCard({image, name}) {
+export default function CharacterCard({image, name, id}) {
   const navigation = useNavigation();
   return (
     <TouchableOpacity style={styles.container}
-    onPress={() => navigation.navigate('Detail')}
+    onPress={() => {
+      navigation.navigate('Detail', {id: id});
+    }}
     >
 			<Image 
 				style={styles.image}
-				source={image}
+				source={{uri: image}}
 			/>
       <Text style={styles.font}>{name}</Text>
     </TouchableOpacity>
@@ -25,9 +27,9 @@ const styles = StyleSheet.create({
     marginTop: 5,
     borderStyle: 'solid',
     width: '90%',
-    dysplay: 'flex',
+    display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'left',
+    //justifyContent: 'left',
     alignItems: 'center',
     backgroundColor: 'pink',
     borderRadius: 10,
